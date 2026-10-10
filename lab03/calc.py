@@ -13,3 +13,5 @@ elif op == "/":
         print(x / y)
     else:
         print("Ошибка: деление на ноль")
+elif op == "**":
+    print(x ** y)
