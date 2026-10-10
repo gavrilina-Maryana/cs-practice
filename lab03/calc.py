@@ -5,4 +5,6 @@ if op == "+":
 elif op == "-":
     print (x - y)
 elif op == "*":
-    print(x * y)  
+    print(x * y)
+elif op == "/":
+    print(x / y) git 
