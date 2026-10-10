@@ -4,4 +4,5 @@ if op == "+":
     print (x + y) 
 elif op == "-":
     print (x - y)
-    
+elif op == "*":
+    print(x * y)  
