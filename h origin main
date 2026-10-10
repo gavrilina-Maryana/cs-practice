@@ -1,0 +1,38 @@
+[33mtag v1.0[m
+Tagger: Марьяна <maryana.gavrilina@inbox.ru>
+Date:   Sat Oct 10 14:22:17 2026 +0300
+
+Рабочая версия калькулятора
+
+[33mcommit 33fada403170b72e90d7e026f1471c70107eccb2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;33mtag: [m[1;33mv1.0[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Марьяна <maryana.gavrilina@inbox.ru>
+Date:   Sat Oct 10 14:21:19 2026 +0300
+
+    Исправлены ошибки
+
+[1mdiff --git a/lab03/calc.py b/lab03/calc.py[m
+[1mindex fbe22ae..cd2b0d9 100644[m
+[1m--- a/lab03/calc.py[m
+[1m+++ b/lab03/calc.py[m
+[36m@@ -1,8 +1,15 @@[m
+[31m-x, op, y = map(int(input("Введите два числа и операцию между ними:")).split())[m
+[32m+[m[32mx, op, y = input("Введите два числа и операцию между ними: ").split()[m
+[32m+[m[32mx = int(x)[m
+[32m+[m[32my = int(y)[m
+ [m
+ if op == "+":[m
+[31m-    print (x + y) [m
+[32m+[m[32m    print(x + y)[m
+ elif op == "-":[m
+[31m-    print (x - y)[m
+[32m+[m[32m    print(x - y)[m
+ elif op == "*":[m
+[31m-    print(x * y)  [m
+\ No newline at end of file[m
+[32m+[m[32m    print(x * y)[m
+[32m+[m[32melif op == "/":[m
+[32m+[m[32m    if y != 0:[m
+[32m+[m[32m        print(x / y)[m
+[32m+[m[32m    else:[m
+[32m+[m[32m        print("Ошибка: деление на ноль")[m
+\ No newline at end of file[m
