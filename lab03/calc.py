@@ -2,3 +2,6 @@ x, op, y = map(int(input("Введите два числа и операцию �
 
 if op == "+":
     print (x + y) 
+elif op == "-":
+    print (x - y)
+    
