@@ -1,27 +1,27 @@
-# main.py
 import sys
-from stats import read_valid, average_by_city, warmest_city
+from stats import parse_record, read_valid, average_by_city, warmest_city
 
 def main():
-    input_data = sys.stdin.read()
+    lines = sys.stdin.read().splitlines()
     
-    lines = input_data.splitlines()
 
     valid_records = read_valid(lines)
     
-    total_valid = len(valid_records)
-    total_skipped = len(lines) - total_valid
+
+    non_empty_lines = [line for line in lines if line.strip() != ""]
+    errors_count = len(non_empty_lines) - len(valid_records)
     
-    print(total_valid)
-    print(total_skipped)
-    
-    if total_valid > 0:
-        best_city = warmest_city(valid_records)
+
+    print(len(valid_records))
+
+    print(errors_count)
+
+    if valid_records:
+        best = warmest_city(valid_records)
         averages = average_by_city(valid_records)
-    
-        print(f"{averages[best_city]:.1f}")
+        print(f"{averages[best]:.1f}")
     else:
-        print(0.0)
+        print("0.0")
 
 if __name__ == "__main__":
     main()

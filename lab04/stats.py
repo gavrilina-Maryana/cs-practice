@@ -1,47 +1,64 @@
 def parse_record(line):
-    line = line.split(';')
-    if len(line) != 3:
-        raise ValueError
-    else:
-        c, t, d = line
-        return c, t, d
+    parts = line.split(';')
+    if len(parts) != 3:
+        raise ValueError("Invalid fields count")
+    
+    city, temp_str, date = parts
+    
+    if not city.strip() or not date.strip():
+        raise ValueError("Empty city or date")
+        
+    try:
+        temp = float(temp_str)
+    except ValueError:
+        raise ValueError("Temp is not a number")
+        
+    return {"city": city, "temperature": temp, "date": date}
 
 
-def check_lines(lines):
-    total = {}
-    count = {}
+def read_valid(lines):
+    valid = []
     for line in lines:
         if line.strip() == "":
             continue
-        
         try:
-            c, t, d = parse_record(line)
-            temp = float(t)
+            record = parse_record(line)
+            valid.append(record)
         except ValueError:
             continue
-        else:
-            total[c] = total.get(c, 0) + temp
-            count[c] = count.get(c, 0) + 1
-            
-    averages = {}
-    for c in total:
-        averages[c] = round(total[c] / count[c], 1)
+    return valid
+
+
+def average_by_city(records):
+    total = {}
+    count = {}
+    for rec in records:
+        city = rec["city"]
+        temp = rec["temperature"] 
         
+        total[city] = total.get(city, 0) + temp
+        count[city] = count.get(city, 0) + 1
+        
+    averages = {}
+    for city in total:
+        averages[city] = round(total[city] / count[city], 1)
     return averages
 
 
 def warmest_city(records):
-
     if not records:
         return ""
-    
-    cities = sorted(records.keys())
-    best = cities[0]
-    for c in cities:
-        if records[c] > records[best]:
-            best = c
-    return best
+        
+    averages = average_by_city(records)
 
+    sorted_cities = sorted(averages.keys())
+    best = sorted_cities[0]
+    
+    for city in sorted_cities:
+        if averages[city] > averages[best]:
+            best = city
+            
+    return best
 
 
 
