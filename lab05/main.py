@@ -1,12 +1,20 @@
-from logstats import parse_event, count_levels, top_errors
+from logstats import parse_event, count_levels, top_errors, format_report
 
-with open('events.log' , 'r' , encoding='utf-8') as file:
-    for line in file:
-        print(parse_event(line))
+filename = 'events.log'
 
-counts = count_levels(lines)
+with open(filename, 'r', encoding='utf-8') as file:
+    counts = count_levels(file)
+
 
 total_parsed = sum(counts.values())
 print(total_parsed)
+print(counts.get('ERROR', 0))
+print(counts.get('BROKEN', 0))
 
-print()
+with open(filename, 'r', encoding='utf-8') as file:
+    errors = top_errors(file, 3) 
+
+report_text = format_report(counts, errors)
+
+with open('report.txt', 'w', encoding='utf-8') as report_file:
+    report_file.write(report_text)
