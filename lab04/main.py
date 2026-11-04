@@ -4,13 +4,10 @@ from stats import parse_record, read_valid, average_by_city, warmest_city
 def main():
     lines = sys.stdin.read().splitlines()
     
-
     valid_records = read_valid(lines)
-    
 
     non_empty_lines = [line for line in lines if line.strip() != ""]
     errors_count = len(non_empty_lines) - len(valid_records)
-    
 
     print(len(valid_records))
 
