@@ -1,6 +1,6 @@
 from logstats import parse_event, count_levels, top_errors, format_report
 
-filename = 'events.log'
+filename = input().strip()
 
 with open(filename, 'r', encoding='utf-8') as file:
     counts = count_levels(file)
