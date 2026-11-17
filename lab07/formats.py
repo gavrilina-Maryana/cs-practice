@@ -34,11 +34,6 @@ def parse_settings(lines):
         records[key] = value.strip()
     return records
 
-
-
-
-
-
 print(yaml)
 
 
